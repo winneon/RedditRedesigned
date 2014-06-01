@@ -1,0 +1,248 @@
+a,
+.tabmenu li.selected a {
+	color: #6B7073;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+strong,
+b,
+.dropdown.srdrop .selected,
+#sr-header-area {
+	font-weight: 700;
+}
+
+#header {
+	background-color: #E8ECEF;
+}
+
+#header-bottom-left {
+	padding-top: 15px;
+}
+
+#header-bottom-left,
+.trending-subreddits {
+	text-align: center;
+}
+
+#sr-header-area {
+	background-color: #202020;
+	color: white;
+	font-size: 12px;
+	text-transform: uppercase;
+	padding: 10px;
+	height: 23px;
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+	overflow: hidden;
+	position: relative;
+}
+
+.menuarea,
+#sr-header-area {
+	border-bottom: 0;
+}
+
+#header-bottom-left,
+#srLeftContainer,
+.width-clip,
+.sr-bar {
+	margin: 0 auto;
+}
+
+#header-bottom-left,
+.content,
+.width-clip,
+.sr-bar {
+	width: 88%;
+}
+
+.sr-list,
+.listing-chooser,
+.organic-listing,
+.srSep,
+.rank,
+.pagename,
+#sr-more-link,
+#header-bottom-right,
+#search,
+input[name="restrict_sr"] {
+	display: none;
+}
+
+#RESStaticShortcuts,
+#RESShortcutsViewport,
+#RESShortcutsEditContainer {
+	display: none !important;
+}
+
+.keyHighlight,
+.RES-keyNav-activeElement,
+div .RES-keyNav-activeElement,
+.RES-keyNav-activeElement,
+.commentarea .RES-keyNav-activeElement .md,
+.commentarea .RES-keyNav-activeElement.entry .noncollapsed {
+	background-color: transparent !important;
+}
+
+.dropdown.srdrop span.selected,
+.sr-bar a {
+	padding: 0px;
+	margin: 0px;
+	background: transparent;
+	color: white;
+}
+
+.width-clip a {
+	color: white;
+}
+
+.fa {
+	font-weight: 700 !important;
+}
+
+.message.new > .entry {
+	border: 0;
+}
+
+#sr-header-area .dropdown.srdrop {
+	padding: 2px 10px 2px 10px;
+	border-right: 1px solid #4D4D4D;
+}
+
+.search-top {
+	float: right;
+	margin-top: -10px;
+	width: 300px;
+}
+
+.search-top > input {
+	background-color: #3C3C3C;
+	width: 300px;
+	height: 23px;
+	padding: 10px 10px 10px 10px;
+	margin-left: -10px;
+	border: 0;
+	color: white;
+	font-weight: 700;
+	text-indent: 23px;
+	background-repeat: no-repeat;
+	background-position: 15px 16px;
+	text-transform: uppercase;
+	outline: none;
+}
+
+.search-top > input:focus {
+	text-transform: none;
+}
+
+.search-top > input::-webkit-input-placeholder {
+	color: white;
+}
+
+.search-top > input:focus::-webkit-input-placeholder {
+	color: transparent;
+}
+
+#header-img {
+	padding: 0px 20px 15px 0px;
+}
+
+.tabmenu {
+	margin: 10px 0px 10px 0px;
+}
+
+.tabmenu li a {
+	background-color: #DEE3E6;
+	padding: 10px 15px 10px 15px;
+	margin-bottom: -1px;
+	border-radius: 2px 2px 0px 0px;
+}
+
+#header,
+.tabmenu li a {
+	border-bottom: 1px solid #C7CBCD;
+}
+
+.tabmenu li a,
+.tabmenu li.selected a {
+	border: 1px solid #C7CBCD;
+}
+
+.tabmenu li.selected a {
+	background-color: white;
+	border-bottom: 1px solid white;
+}
+
+.content {
+	margin: 15px auto 0px auto;
+}
+
+.trending-subreddits {
+	margin-bottom: 15px;
+}
+
+.side {
+	padding: 10px;
+}
+
+.link,
+.link.last-clicked {
+	border: 0;
+	border-bottom: 1px solid #DDE1E5;
+	padding: 15px 0px 15px 0px;
+	margin-bottom: 0px;
+	min-height: 60px;
+}
+
+.link:first-child {
+	border-top: 1px solid #DDE1E5;
+}
+
+.thumbnail {
+	background-position: center center;
+	background-size: cover;
+	width: 60px;
+	height: 60px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	border-radius: 2px;
+}
+
+.thing .title,
+.thing .title:visited,
+.thing.visited .title {
+	color: black;
+}
+
+.midcol,
+.entry {
+	margin-top: 4px;
+}
+
+.link .title .shortened {
+	display: inline-block;
+	max-width: 60%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin-bottom: -5px;
+}
+
+.link .title .shortened:hover {
+	max-width: 100%;
+	text-overflow: clip;
+	white-space: normal;
+}
+
+a.author,
+a.subreddit {
+	color: #007AFF;
+}
+
+body.with-listing-chooser.listing-chooser-collapsed > .content,
+body.with-listing-chooser.listing-chooser-collapsed .footer-parent,
+body.with-listing-chooser > .content,
+body.with-listing-chooser .footer-parent {
+	margin-left: auto;
+}
