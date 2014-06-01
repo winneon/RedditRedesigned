@@ -1,4 +1,4 @@
-![Icon](images/icon_42.png) RedditRedesigned
+&nbsp;![Icon](images/icon_42.png) RedditRedesigned
 ===
 A chrome extension that turns Reddit into a cleaner and more beautiful interface.
 
