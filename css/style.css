@@ -67,7 +67,8 @@ b,
 #sr-more-link,
 #header-bottom-right,
 #search,
-input[name="restrict_sr"] {
+input[name="restrict_sr"],
+.linkflairlabel[title*="serious"] {
 	display: none;
 }
 
@@ -190,14 +191,9 @@ div .RES-keyNav-activeElement,
 .link,
 .link.last-clicked {
 	border: 0;
-	border-bottom: 1px solid #DDE1E5;
 	padding: 15px 0px 15px 0px;
 	margin-bottom: 0px;
 	min-height: 60px;
-}
-
-.link:first-child {
-	border-top: 1px solid #DDE1E5;
 }
 
 .thumbnail {
@@ -235,9 +231,98 @@ div .RES-keyNav-activeElement,
 	white-space: normal;
 }
 
+.linkinfo,
+.link .usertext .md {
+	background-color: #F8F8F8;
+	border-radius: 2px;
+	padding: 15px;
+}
+
+.linkinfo,
+.link .usertext .md,
+.morelink,
+.morelink:hover {
+	border: 0;
+	border-top: 1px solid #DDE1E5;
+	border-bottom: 1px solid #DDE1E5;
+}
+
+.thing.link,
+.thing.link.last-clicked {
+	border-bottom: 1px solid #DDE1E5;
+}
+
+.thing.link:first-of-type {
+	border-top: 1px solid #DDE1E5;
+}
+
 a.author,
 a.subreddit {
 	color: #007AFF;
+}
+
+.gilded,
+.linkflair-serious {
+	position: relative;
+}
+
+.gilded:before,
+.linkflair-serious:before {
+	content: "";
+	position: absolute;
+	top: -1px;
+	bottom: -1px;
+	left: -30px;
+	right: -30px;
+	z-index: -1;
+}
+
+.gilded:before {
+	border-left: 15px solid #FFE000;
+	border-right: 15px solid #FFE000;
+}
+
+.linkflair-serious:before {
+	border-left: 15px solid #8DC44E;
+	border-right: 15px solid #8DC44E;
+}
+
+.comment .child,
+.panestack-title {
+	border: 0;
+}
+
+.usertext.border .usertext-body {
+	background-color: transparent;
+}
+
+.linkinfo .shortlink {
+	font-size: 0px;
+}
+
+.linkinfo .shortlink input {
+	border: 0;
+	font-size: 11px;
+	background-color: transparent;
+	padding: 0px;
+}
+
+.morelink {
+	background: #F8F8F8;
+	position: initial;
+	text-transform: uppercase;
+}
+
+.morelink a {
+	color: black;
+}
+
+.morelink:hover {
+	background: #EEEEEE;
+}
+
+.morelink:hover a {
+	color: black;
 }
 
 body.with-listing-chooser.listing-chooser-collapsed > .content,

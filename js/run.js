@@ -55,7 +55,7 @@ function run(){
 	
 	topbar.addLink(user.html(), "top_user", user.attr("href"));
 	topbar.addItem("<i class='fa fa-envelope-o'></i>", "mail", function(item, child){
-	child.attr("href", "http://www.reddit.com/message/inbox/");
+		child.attr("href", "http://www.reddit.com/message/inbox/");
 		if ($("#mail").attr("class") === "havemail"){
 			child.css("color", "#FF3D00");
 			child.attr("href", "http://www.reddit.com/message/unread/");

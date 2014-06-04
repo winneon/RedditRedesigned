@@ -30,7 +30,7 @@ function TopBar(selector){
 		var jitem = $(item);
 		var child = jitem.children(0);
 		
-		child.attr("href", "#");
+		child.attr("href", "javascript:void(0);");
 		func(jitem, child);
 		
 		topbar.append(item);
