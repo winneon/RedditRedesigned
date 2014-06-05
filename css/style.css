@@ -64,6 +64,7 @@ b,
 .srSep,
 .rank,
 .pagename,
+.nub,
 #sr-more-link,
 #header-bottom-right,
 #search,
@@ -186,6 +187,8 @@ div .RES-keyNav-activeElement,
 
 .side {
 	padding: 10px;
+	position: relative;
+	z-index: 1;
 }
 
 .link,
@@ -259,32 +262,6 @@ div .RES-keyNav-activeElement,
 a.author,
 a.subreddit {
 	color: #007AFF;
-}
-
-.gilded,
-.linkflair-serious {
-	position: relative;
-}
-
-.gilded:before,
-.linkflair-serious:before {
-	content: "";
-	position: absolute;
-	top: -1px;
-	bottom: -1px;
-	left: -30px;
-	right: -30px;
-	z-index: -1;
-}
-
-.gilded:before {
-	border-left: 15px solid #FFE000;
-	border-right: 15px solid #FFE000;
-}
-
-.linkflair-serious:before {
-	border-left: 15px solid #8DC44E;
-	border-right: 15px solid #8DC44E;
 }
 
 .comment .child,

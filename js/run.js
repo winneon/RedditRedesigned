@@ -38,8 +38,11 @@ function run(){
 	var reddit = new Reddit();
 	
 	changeHeader();
-	addCSS("style.css", "ext-style");
+	
+	addCSS("style.css", "rr_style");
+	addCSS("flairs.css", "rr_flairs")
 	addRemoteCSS("//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css", "font-awesome");		
+	
 	var user = $(".user > a");
 		
 	tabmenu.addItem("sidebar", "side_toggle", function(item, child){

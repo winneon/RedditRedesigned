@@ -1,0 +1,32 @@
+.gilded,
+.linkflair,
+.over18 {
+	position: relative;
+}
+
+.gilded:before,
+.linkflair:before,
+.over18:before {
+	content: "";
+	position: absolute;
+	top: -1px;
+	bottom: -1px;
+	left: -30px;
+	right: -30px;
+	z-index: -1;
+}
+
+.linkflair-serious:before {
+	border-left: 15px solid #8DC44E;
+	border-right: 15px solid #8DC44E;
+}
+
+.gilded:before {
+	border-left: 15px solid #FFE000;
+	border-right: 15px solid #FFE000;
+}
+
+.over18:before {
+	border-left: 15px solid #FF0000;
+	border-right: 15px solid #FF0000;
+}
