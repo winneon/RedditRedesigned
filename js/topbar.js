@@ -18,14 +18,15 @@ function TopBar(selector){
 	var topbar = $(selector);
 	
 	this.addLink = function(title, clazz, link){
+		update();
 		var item = createItem(title, clazz);
 		$(item).children(0).attr("href", link);
 		
 		topbar.append(item);
-		update();
 	}
 	
 	this.addItem = function(title, clazz, func){
+		update();
 		var item = createItem(title, clazz);
 		var jitem = $(item);
 		var child = jitem.children(0);
@@ -34,10 +35,10 @@ function TopBar(selector){
 		func(jitem, child);
 		
 		topbar.append(item);
-		update();
 	}
 	
 	this.addSearchBar = function(placeholder){
+		update();
 		$(".search-top").remove();
 		var search = document.createElement("form");
 		
@@ -49,6 +50,23 @@ function TopBar(selector){
 		topbar.append(search);
 		$(".search-top > input[name='q']").css("background-image", "url('" + getImage("search.png") + "')");
 		$("input[name='restrict_sr']").prop("checked", true);
+	}
+	
+	this.addLogin = function(){
+		update();
+		var login = $("<form>");
+		login.attr("method", "post");
+		login.attr("action", "https://ssl.reddit.com/post/login");
+		login.addClass("top_login_entry");
+		login.html("<input value name='user' type='text' maxlength='20' autofocus placeholder='Username' /><input value name='passwd' type='password' placeholder='Password' /><input type='checkbox' name='rem' />");
+		topbar.prepend(login);
+		$("input[name='rem']").prop("checked", true);
+		$(".top_login_entry > input").keypress(function(event){
+			if (event.which === 13){
+				$(".top_login_entry").submit();
+				return false;
+			}
+		});
 	}
 	
 	function createItem(title, clazz){

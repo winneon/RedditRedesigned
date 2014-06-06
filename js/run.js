@@ -55,8 +55,17 @@ function run(){
 		});
 		$(".side").hide();
 	});
-	
-	topbar.addLink(user.html(), "top_user", user.attr("href"));
+	topbar.addItem(user.html(), "top_user", function(item, child){
+		if (child.html() === "login or register"){
+			child.attr("href", "javascript:void(0);");
+			child.click(function(event){
+				$(".width-clip div").hide();
+				$(".top_login_entry").show();
+			});
+		} else {
+			child.attr("href", $(".user > a").attr("href"));
+		}
+	});
 	topbar.addItem("<i class='fa fa-envelope-o'></i>", "mail", function(item, child){
 		child.attr("href", "http://www.reddit.com/message/inbox/");
 		if ($("#mail").attr("class") === "havemail"){
@@ -65,7 +74,16 @@ function run(){
 		}
 	});
 	topbar.addLink("Subreddits", "top_subreddits", "http://www.reddit.com/subreddits/mine");
+	if ($(".login-required").length === 0){
+		topbar.addItem("Logout", "top_logout", function(item, child){
+			child.attr("href", "javascript:void(0);");
+			child.click(function(event){
+				$(".logout").submit();
+			});
+		});
+	}
 	topbar.addSearchBar("search reddit");
+	topbar.addLogin();
 	
 	switch (page()){
 		case RedditPage.SUBREDDIT:

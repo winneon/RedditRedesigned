@@ -61,7 +61,26 @@ function thumbnails(){
 			thumb.css("background-image", "url('" + src + "')");
 			voting.before(thumb);
 		}
+		if ($(this).find(".author").html() === $(".user > a").html()){
+			$(this).addClass("own");
+		}
 		$(this).addClass("rr");
+	});
+	$(".midcol.likes").parent().addClass("upvoted");
+	$(".midcol.dislikes").parent().addClass("downvoted");
+	$(".midcol .arrow").click(function(event){
+		if ($(this).parent().hasClass("likes")){
+			$(this).parent().parent().addClass("upvoted");
+			$(this).parent().parent().removeClass("downvoted");
+		}
+		if ($(this).parent().hasClass("dislikes")){
+			$(this).parent().parent().removeClass("upvoted");
+			$(this).parent().parent().addClass("downvoted");
+		}
+		if ($(this).parent().hasClass("unvoted")){
+			$(this).parent().parent().removeClass("upvoted");
+			$(this).parent().parent().removeClass("downvoted");
+		}
 	});
 	checkLinks();
 }
@@ -95,9 +114,13 @@ RedditPage = {
 function page(){
 	for (var page in RedditPage){
 		var reddit_page = RedditPage[page];
-		if (document.URL.indexOf(reddit_page) > -1){
+		if (document.URL.contains(reddit_page)){
 			return reddit_page;
 		}
 	}
 	return null;
+}
+
+String.prototype.contains = function(str){
+	return this.indexOf(str) > -1;
 }

@@ -65,10 +65,12 @@ b,
 .rank,
 .pagename,
 .nub,
+.top_login_entry,
 #sr-more-link,
 #header-bottom-right,
 #search,
 input[name="restrict_sr"],
+input[name='rem'],
 .linkflairlabel[title*="serious"] {
 	display: none;
 }
@@ -113,13 +115,29 @@ div .RES-keyNav-activeElement,
 	border-right: 1px solid #4D4D4D;
 }
 
+.width-clip form {
+	margin-top: -10px;
+}
+
 .search-top {
 	float: right;
-	margin-top: -10px;
 	width: 300px;
 }
 
-.search-top > input {
+.top_login_entry {
+	float: left;
+}
+
+form.top_login_entry input {
+	width: 200px;
+	text-indent: 8px;
+}
+
+.top_login_entry input[name='user'] {
+	margin-right: 30px;
+}
+
+.width-clip input {
 	background-color: #3C3C3C;
 	width: 300px;
 	height: 23px;
@@ -128,22 +146,18 @@ div .RES-keyNav-activeElement,
 	border: 0;
 	color: white;
 	font-weight: 700;
-	text-indent: 23px;
 	background-repeat: no-repeat;
 	background-position: 15px 16px;
 	text-transform: uppercase;
 	outline: none;
+	text-indent: 23px;
 }
 
-.search-top > input:focus {
-	text-transform: none;
-}
-
-.search-top > input::-webkit-input-placeholder {
+.width-clip input::-webkit-input-placeholder {
 	color: white;
 }
 
-.search-top > input:focus::-webkit-input-placeholder {
+.width-clip input:focus::-webkit-input-placeholder {
 	color: transparent;
 }
 
