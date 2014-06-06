@@ -44,46 +44,26 @@ function getURL(name){
 // Quick Fixes
 
 function thumbnails(){
-	for (var i = 0; i < $(".thumbnail").length; i++){
-		var thumb = $($(".thumbnail")[i]);
-		var child = thumb.children(0);
-		var src = child.attr("src");
-		
-		if (thumb.attr("id") !== "thumbnail-rr"){
-			child.remove();
-			
-			if (!src){
-				thumb.remove();
-			} else {
-				thumb.attr("style", "background-image: url('" + src + "')");
-			}
+	$(".link").each(function(){
+		if ($(this).hasClass("rr")){
+			return;
 		}
-	}
-	for (var i = 0; i < $(".link").length; i++){
-		var link = $($(".link")[i]);
-		var voting = link.find(".midcol");
-		var thumb = link.find(".thumbnail");
-		
-		if (thumb.attr("id") !== "thumbnail-rr"){
-			if (voting.next().attr("class").indexOf("thumbnail") > -1){
-				thumb.after(voting);
-			} else {
-				var thumbnail = document.createElement("a");
-				
-				thumbnail.href = link.find("a.title").attr("href");
-				thumbnail.className = "thumbnail";
-				thumbnail.style.cssText = "background-image: url('" + getImage("self_post.png") + "')";
-				
-				voting.before(thumbnail);
-			}
+		if ($(this).hasClass("self")){
+			$(this).find(".thumbnail").remove();
 		}
-	}
-	$(".thumbnail").attr("id", "thumbnail-rr");
-	checkLinks();
-	
-	$("a.title").click(function(event){
-		$(event.target).css("font-weight", "400");
+		var thumb = $(this).find(".thumbnail");
+		var voting = $(this).find(".midcol");
+		if (thumb.length === 0){
+			voting.before($("<a>").addClass("thumbnail meta").attr("href", $(this).find("a.title").attr("href")));
+		} else {
+			var src = thumb.children(0).attr("src");
+			thumb.children(0).remove();
+			thumb.css("background-image", "url('" + src + "')");
+			voting.before(thumb);
+		}
+		$(this).addClass("rr");
 	});
+	checkLinks();
 }
 
 function checkLinks(){
@@ -98,12 +78,6 @@ function checkLinks(){
 
 function checkTable(){
 	if ($("#siteTable").height() !== height){
-		for (var i = 0; i < $(".thumbnail").length; i++){
-			var thumb = $($(".thumbnail")[i]);
-			if (thumb.attr("id") !== "thumbnail-rr"){
-				thumb.remove();
-			}
-		}
 		thumbnails();
 		height = $("#siteTable").height();
 	}

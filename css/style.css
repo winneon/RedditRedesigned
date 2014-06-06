@@ -209,6 +209,10 @@ div .RES-keyNav-activeElement,
 	border-radius: 2px;
 }
 
+.thumbnail.meta {
+	background-image: url("../images/self_post.png");
+}
+
 .thing .title,
 .thing .title:visited,
 .thing.visited .title {
