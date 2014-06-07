@@ -74,7 +74,7 @@ function run(){
 		}
 	});
 	topbar.addLink("Subreddits", "top_subreddits", "http://www.reddit.com/subreddits/mine");
-	if ($(".login-required").length === 0){
+	if ($(".user > a").html() !== "login or register"){
 		topbar.addItem("Logout", "top_logout", function(item, child){
 			child.attr("href", "javascript:void(0);");
 			child.click(function(event){
