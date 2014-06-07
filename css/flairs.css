@@ -12,30 +12,55 @@
 	z-index: -1;
 }
 
-.linkflair-serious:before {
+.link .tagline:after {
+	font-weight: 700;
+	margin-left: 3px;
+}
+
+.link.linkflair-serious:before {
 	border-left: 15px solid #8DC44E;
 	border-right: 15px solid #8DC44E;
 }
 
-.gilded:before {
+.link.linkflair-serious .tagline:after {
+	content: "serious post";
+	color: #8DC44E;
+}
+
+.link.gilded:before {
 	border-left: 15px solid #FFE000;
 	border-right: 15px solid #FFE000;
 }
 
-.over18:before {
+.link.gilded .tagline:after {
+	content: "gilded post";
+	color: #FFE000;
+}
+
+.link.over18:before {
 	border-left: 15px solid #FF0000;
 	border-right: 15px solid #FF0000;
 }
 
-.own:before {
+.link.over18 .tagline:after {
+	content: "nsfw post";
+	color: #FF0000;
+}
+
+.link.own:before {
 	border-left: 15px solid #FF0085;
 	border-right: 15px solid #FF0085;
 }
 
-.upvoted:before {
+.link.own .tagline:after {
+	content: "own post";
+	color: #FF0085;
+}
+
+.link.upvoted:before {
 	border-left: 15px solid #FF8F00;
 }
 
-.downvoted:before {
+.link.downvoted:before {
 	border-left: 15px solid #0085FF;
 }

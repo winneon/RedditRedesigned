@@ -56,9 +56,13 @@ function thumbnails(){
 		if (thumb.length === 0){
 			voting.before($("<a>").addClass("thumbnail meta").attr("href", $(this).find("a.title").attr("href")));
 		} else {
-			var src = thumb.children(0).attr("src");
-			thumb.children(0).remove();
-			thumb.css("background-image", "url('" + src + "')");
+			if (thumb.children().length > 0){
+				var src = thumb.children(0).attr("src");
+				thumb.children(0).remove();
+				thumb.css("background-image", "url('" + src + "')");
+			} else {
+				thumb.addClass("meta").attr("href", $(this).find("a.title").attr("href"));
+			}
 			voting.before(thumb);
 		}
 		if ($(this).find(".author").html() === $(".user > a").html()){
@@ -66,6 +70,7 @@ function thumbnails(){
 		}
 		$(this).addClass("rr");
 	});
+	$(".thumbnail").removeClass("default");
 	$(".midcol.likes").parent().addClass("upvoted");
 	$(".midcol.dislikes").parent().addClass("downvoted");
 	$(".midcol .arrow").click(function(event){
