@@ -1,4 +1,5 @@
 var tabmenu = new TabMenu(".tabmenu");
+var pagename = $(".pagename > a").html();
 
 $(document).ready(function(){
 	
@@ -22,8 +23,10 @@ $(document).ready(function(){
 			if (result.style === "undefined"){
 				chrome.storage.sync.set({"style": true}, function(result){});
 			}
-			if (result.style){
+			if (result.style === "undefined" ||result.style){
 				$("link[title='applied_subreddit_stylesheet']").remove();
+				run();
+			} else if ($("link[title='applied_subreddit_stylesheet']").length === 0){
 				run();
 			}
 		});
@@ -34,8 +37,12 @@ $(document).ready(function(){
 });
 
 function run(){
+	$.ajaxSetup({
+		async: false
+	});
+	
 	var topbar = new TopBar(".width-clip");
-	var reddit = new Reddit();
+	var reddit = new Reddit()
 	
 	changeHeader();
 	
@@ -73,7 +80,32 @@ function run(){
 			child.attr("href", "http://www.reddit.com/message/unread/");
 		}
 	});
-	topbar.addLink("Subreddits", "top_subreddits", "http://www.reddit.com/subreddits/mine");
+	topbar.addItem("Subreddits", "top_subreddits", function(item, child){
+		var html = "<ul class='topbar_dropdown' id='subreddit'>";
+		var list = reddit.getSubreddits();
+		for (var i = 0; i < list.length; i++){
+			var subreddit = list[i];
+			html += "<li><a href='http://www.reddit.com/r/" + subreddit + "'>" + subreddit + "</a></li>";
+		}
+		html += "</ul>";
+		child.after(html);
+		child.click(function(event){
+			$("#subreddit").show();
+		});
+	});
+	topbar.addItem("Multireddits", "top_multireddits", function(item, child){
+		var html = "<ul class='topbar_dropdown' id='multireddit'>";
+		var list = reddit.getMultireddits();
+		for (var i = 0; i < list.length; i++){
+			var multireddit = list[i];
+			html += "<li><a href='http://www.reddit.com/me/m/" + multireddit + "'>" + multireddit + "</a></li>";
+		}
+		html += "</ul>";
+		child.after(html);
+		child.click(function(event){
+			$("#multireddit").show();
+		});
+	});
 	if ($(".user > a").html() !== "login or register"){
 		topbar.addItem("Logout", "top_logout", function(item, child){
 			child.attr("href", "javascript:void(0);");
@@ -84,6 +116,16 @@ function run(){
 	}
 	topbar.addSearchBar("search reddit");
 	topbar.addLogin();
+	
+	$(document).click(function(event){
+		var target = event.target;
+		if (!($(target).parent().is(".dropdown"))){
+			$(".topbar_dropdown").hide();
+		} else {
+			$(".topbar_dropdown").hide();
+			$(target.nextSibling).show();
+		}
+	});
 	
 	switch (page()){
 		case RedditPage.SUBREDDIT:
@@ -103,7 +145,8 @@ function run(){
 	}
 	
 	thumbnails();
-	
 	height = $("#siteTable").height();
+	
+	adjustDropdowns();
 	checkTable();
 }

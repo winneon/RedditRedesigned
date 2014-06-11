@@ -53,21 +53,29 @@ function thumbnails(){
 		}
 		var thumb = $(this).find(".thumbnail");
 		var voting = $(this).find(".midcol");
+		var title = $(this).find("a.title").attr("href");
 		if (thumb.length === 0){
-			voting.before($("<a>").addClass("thumbnail meta").attr("href", $(this).find("a.title").attr("href")));
+			var type = "";
+			if ($(this).hasClass("self")){
+				type = "meta";
+			} else {
+				type = "unknown";
+			}
+			voting.before($("<a>").addClass("thumbnail " + type).attr("href", title));
 		} else {
 			if (thumb.children().length > 0){
 				var src = thumb.children(0).attr("src");
 				thumb.children(0).remove();
 				thumb.css("background-image", "url('" + src + "')");
 			} else {
-				thumb.addClass("meta").attr("href", $(this).find("a.title").attr("href"));
+				thumb.addClass("unknown").attr("href", title);
 			}
 			voting.before(thumb);
 		}
 		if ($(this).find(".author").html() === $(".user > a").html()){
 			$(this).addClass("own");
 		}
+		$(this).prepend($("<a>").addClass("link_click").attr("href", $(this).find("a.comments").attr("href")).attr("target", "_blank"));
 		$(this).addClass("rr");
 	});
 	$(".thumbnail").removeClass("default");
@@ -90,6 +98,11 @@ function thumbnails(){
 	checkLinks();
 }
 
+window.onresize = function(){
+	checkLinks();
+	adjustDropdowns();
+}
+
 function checkLinks(){
 	for (var i = 0; i < $("a.title").length; i++){
 		var link = $($("a.title")[i]);
@@ -108,12 +121,21 @@ function checkTable(){
 	setTimeout(checkTable, 500);
 }
 
+function adjustDropdowns(){
+	for (var i = 0; i < $(".topbar_dropdown").length; i++){
+		var dropdown = $(".topbar_dropdown")[i];
+		if ($(dropdown).height() > $(window).height() - 53){
+			$(dropdown).height($(window).height() - 53);
+		}
+	}
+}
+
 // Reddit Page
 
 RedditPage = {
+	USER: "/user/",
 	COMMENTS: "/comments/",
-	SUBREDDIT: "/r/",
-	USER: "/user/"
+	SUBREDDIT: "/r/"
 }
 
 function page(){
