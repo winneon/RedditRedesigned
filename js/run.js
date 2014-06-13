@@ -1,4 +1,5 @@
 var tabmenu = new TabMenu(".tabmenu");
+var reddit = new Reddit();
 var pagename = $(".pagename > a").html();
 
 $(document).ready(function(){
@@ -42,8 +43,6 @@ function run(){
 	});
 	
 	var topbar = new TopBar(".width-clip");
-	var reddit = new Reddit()
-	
 	changeHeader();
 	
 	addCSS("style.css", "rr_style");
@@ -81,29 +80,23 @@ function run(){
 		}
 	});
 	topbar.addItem("Subreddits", "top_subreddits", function(item, child){
-		var html = "<ul class='topbar_dropdown' id='subreddit'>";
-		var list = reddit.getSubreddits();
-		for (var i = 0; i < list.length; i++){
-			var subreddit = list[i];
-			html += "<li><a href='http://www.reddit.com/r/" + subreddit + "'>" + subreddit + "</a></li>";
-		}
-		html += "</ul>";
+		var html = "<ul class='topbar_dropdown' id='subreddit' loaded='false'><li>Loading...</li></ul>";
 		child.after(html);
 		child.click(function(event){
 			$("#subreddit").show();
+			if ($("#subreddit").attr("loaded") === "false"){
+				setTimeout(dropdown, 0, reddit, "subreddit");
+			}
 		});
 	});
 	topbar.addItem("Multireddits", "top_multireddits", function(item, child){
-		var html = "<ul class='topbar_dropdown' id='multireddit'>";
-		var list = reddit.getMultireddits();
-		for (var i = 0; i < list.length; i++){
-			var multireddit = list[i];
-			html += "<li><a href='http://www.reddit.com/me/m/" + multireddit + "'>" + multireddit + "</a></li>";
-		}
-		html += "</ul>";
+		var html = "<ul class='topbar_dropdown' id='multireddit' loaded='false'><li>Loading...</li></ul>";
 		child.after(html);
 		child.click(function(event){
 			$("#multireddit").show();
+			if ($("#multireddit").attr("loaded") === "false"){
+				setTimeout(dropdown, 0, reddit, "multireddit");
+			}
 		});
 	});
 	if ($(".user > a").html() !== "login or register"){
@@ -145,8 +138,26 @@ function run(){
 	}
 	
 	thumbnails();
-	height = $("#siteTable").height();
 	
-	adjustDropdowns();
+	height = $("#siteTable").height();
 	checkTable();
+}
+
+function dropdown(reddit, id){
+	var list = [];
+	switch (id){
+		case "subreddit": list = reddit.getSubreddits(); break;
+		case "multireddit": list = reddit.getMultireddits(); break;
+	}
+	var html = "";
+	for (var i = 0; i < list.length; i++){
+		var reddit = list[i];
+		switch (id){
+			case "subreddit": html += "<li><a href='http://www.reddit.com/r/" + reddit + "'>" + reddit + "</a></li>"; break;
+			case "multireddit": html += "<li><a href='http://www.reddit.com/me/m/" + reddit + "'>" + reddit + "</a></li>"; break;
+		}
+	}
+	$("#" + id).html(html);
+	$("#" + id).attr("loaded", "true");
+	adjustDropdowns();
 }
